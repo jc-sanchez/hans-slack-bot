@@ -12,3 +12,4 @@ phases:
 artifacts:
   files:
     - target/hans-slack-bot-1.0-SNAPSHOT.jar
+  discard-paths: yes
