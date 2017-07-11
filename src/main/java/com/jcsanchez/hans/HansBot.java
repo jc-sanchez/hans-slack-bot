@@ -1,16 +1,10 @@
 package com.jcsanchez.hans;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeParseException;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import com.amazonaws.services.lexruntime.model.PostTextResult;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.jcsanchez.hans.model.*;
 
@@ -20,10 +14,14 @@ public class Main implements RequestHandler<LexRequest, LexResponse>{
     @Override
     public LexResponse handleRequest(LexRequest request, Context context) {
         logger = context.getLogger();
-
         logger.log(String.format("event.bot.name=%s\n", request.getBot().getName()));
 
-        return null;
+        try {
+            return dispatch(request);
+        } catch (Exception e) {
+            System.err.println(e.getStackTrace().toString());
+            return null;
+        }
     }
 
     private LexResponse dispatch(LexRequest request) throws Exception {
