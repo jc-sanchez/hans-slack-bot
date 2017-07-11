@@ -6,9 +6,11 @@ import java.util.Map;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
+import com.jcsanchez.hans.intents.Intent;
+import com.jcsanchez.hans.intents.IntentFactory;
 import com.jcsanchez.hans.model.*;
 
-public class Main implements RequestHandler<LexRequest, LexResponse>{
+public class HansBot implements RequestHandler<LexRequest, LexResponse>{
     static LambdaLogger logger;
 
     @Override
@@ -24,17 +26,14 @@ public class Main implements RequestHandler<LexRequest, LexResponse>{
         }
     }
 
-    private LexResponse dispatch(LexRequest request) throws Exception {
+    private LexResponse dispatch(LexRequest request)  {
         String intentName = request.getCurrentIntent().getName();
         String userId = request.getUserId();
 
         logger.log(String.format("dispatch userId=%s, intentName=%s\n", userId, intentName));
 
-        if (intentName.equals("OrderFlowers")) {
-            return null;
-        }
-
-        throw new Exception("Intent with name " + intentName + " not supported");
+        Intent intent = IntentFactory.getIntent(intentName);
+        return intent.processRequest(request);
     }
 
     private Map<String, String> buildValidationResult(boolean isValid, String violatedSlot, String messageContent) {
