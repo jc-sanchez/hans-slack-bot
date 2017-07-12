@@ -46,7 +46,7 @@ public class HansBot implements RequestHandler<LexRequest, LexResponse>{
         return result;
     }
 
-    private LexResponse elicitSlot(Map<String, String> sessionAttributes,
+    public static LexResponse elicitSlot(Map<String, String> sessionAttributes,
                                       String intentName,
                                       Map<String, String> slots,
                                       String slotToElicit,
@@ -66,7 +66,7 @@ public class HansBot implements RequestHandler<LexRequest, LexResponse>{
                 .withDialogAction(dialogAction);
     }
 
-    private LexResponse delegate(Map<String, String> sessionAttributes, Map<String, String> slots) {
+    public static LexResponse delegate(Map<String, String> sessionAttributes, Map<String, String> slots) {
         DialogAction dialogAction = new DialogAction()
                 .withType(DialogActionType.Delegate)
                 .withSlots(slots);
@@ -76,7 +76,7 @@ public class HansBot implements RequestHandler<LexRequest, LexResponse>{
                 .withDialogAction(dialogAction);
     }
 
-    private LexResponse close(Map<String, String> sessionAttributes, String fulfillmentState, Message message) {
+    public static LexResponse close(Map<String, String> sessionAttributes, String fulfillmentState, Message message) {
         DialogAction dialogAction = new DialogAction()
                 .withType(DialogActionType.Close)
                 .withFullfillmentState(FulfillmentState.fromValue(fulfillmentState))
