@@ -21,7 +21,9 @@ public class HansBot implements RequestHandler<LexRequest, LexResponse>{
         try {
             return dispatch(request);
         } catch (Exception e) {
-            System.err.println(e.getStackTrace().toString());
+            e.printStackTrace();
+
+            // TODO create error response
             return null;
         }
     }
@@ -33,7 +35,7 @@ public class HansBot implements RequestHandler<LexRequest, LexResponse>{
         logger.log(String.format("dispatch userId=%s, intentName=%s\n", userId, intentName));
 
         Intent intent = IntentFactory.getIntent(intentName);
-        return intent.processRequest(request);
+        return intent.withRequest(request).processRequest();
     }
 
     private Map<String, String> buildValidationResult(boolean isValid, String violatedSlot, String messageContent) {
