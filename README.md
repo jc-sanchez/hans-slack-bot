@@ -1,6 +1,6 @@
 # Hans Slack Bot
 ## Overview
-Hans is a bot that allows users to search GitHub from slack.  This project was started to familiarize myself with the AWS Java SKD, AWS Lex, AWS DynamoDB and AWS Lambda.  I also utilize an [open source library](http://github-api.kohsuke.org/) to interact with GitHub.  While I was at it, I also messed around with AWS CodePipeline a little.  Since I initially started this project to try out different AWS service, I did not include any unit tests.  Now that I have more experiece with the SDK and services, I plan on adding tests.
+Hans is a bot that allows users to search GitHub from Slack.  This project was started to familiarize myself with the AWS Java SKD, [AWS Lex](https://aws.amazon.com/lex/), [AWS DynamoDB](https://aws.amazon.com/dynamodb/) and [AWS Lambda](https://aws.amazon.com/lambda/).  I also utilize an [open source library](http://github-api.kohsuke.org/) to interact with GitHub.  While I was at it, I also messed around with [AWS CodePipeline](https://aws.amazon.com/codedeploy/) a little.  Since I initially started this project to try out different AWS service, I did not include any unit tests.  Now that I have more experiece with the SDK and services, I plan on adding tests.
 
 ## Demo
 ![Hans Demo](https://s3.amazonaws.com/randombucketforrandomthings/hans-demo.gif)
